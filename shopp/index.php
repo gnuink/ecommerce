@@ -20,7 +20,7 @@ if (isset($_POST["añadir_al_carro"])) {
     } else {
         $item_array = array(
             'id_p' => $_GET["id"],
-            'item_name' => $_POST["hidden_name"],
+            'item_name' => $_POST["hidden_name"],//sajkdask
             'item_price' => $_POST["hidden_price"],// holakdjak
             'item_quantity' => $_POST["quantity"]// hola
         );
