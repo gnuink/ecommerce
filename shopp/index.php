@@ -13,7 +13,7 @@ if (isset($_POST["añadir_al_carro"])) {
                 'item_price' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"]
             );
-            $_SESSION["compra"][$count] = $item_array;
+            $_SESSION["compra"][$count] = $item_array;//hjfkhjf
         } else {
             echo '<script>alerta("Artículo ya agregado")</script>';// alerta
         }
