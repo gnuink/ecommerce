@@ -11,7 +11,7 @@ if (isset($_POST["añadir_al_carro"])) {
                 'id_p' => $_GET["id"],
                 'item_name' => $_POST["hidden_name"],
                 'item_price' => $_POST["hidden_price"],
-                'item_quantity' => $_POST["quantity"]
+                'item_quantity' => $_POST["quantity"]//hjgjgj
             );
             $_SESSION["compra"][$count] = $item_array;//hjfkhjf
         } else {
