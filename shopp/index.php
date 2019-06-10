@@ -8,22 +8,22 @@ if (isset($_POST["añadir_al_carro"])) {
         if (!in_array($_GET["id"], $item_array_id)) {
             $count = count($_SESSION["compra"]);
             $item_array = array(
-                'id_p' => $_GET["id"],//hola como estas
+                'id_p' => $_GET["id"], //hola como estas
                 'item_name' => $_POST["hidden_name"],
-                'item_price' => $_POST["hidden_price"],// <sjkdas
+                'item_price' => $_POST["hidden_price"], // <sjkdas
                 'item_quantity' => $_POST["quantity"]//hjgjgj
             );
-            $_SESSION["compra"][$count] = $item_array;//hjfkhjf
+            $_SESSION["compra"][$count] = $item_array; //hjfkhjf
         } else {
-            echo '<script>alerta("Artículo ya agregado")</script>';// alerta
+            echo '<script>alerta("Artículo ya agregado")</script>'; // alerta
         }
     } else {
         $item_array = array(
             'id_p' => $_GET["id"],
-            'item_name' => $_POST["hidden_name"],//sajkdask
-            'item_price' => $_POST["hidden_price"],// holakdjak
+            'item_name' => $_POST["hidden_name"], //sajkdask
+            'item_price' => $_POST["hidden_price"], // holakdjak
             'item_quantity' => $_POST["quantity"]// hola
-        );// comenad
+        ); // comenad
         $_SESSION["compra"][0] = $item_array;
     }
 }
@@ -43,28 +43,35 @@ if (isset($_GET["action"])) {
 <!DOCTYPE html>
 <html>
     <head>
-        
         <title>shoping</title> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <LINK REL=StyleSheet HREF="estilo.css" TYPE="text/css" MEDIA=screen>
+        <div class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+        </div>
     </head>
     <body>
         <br />
+
         <div class="container">
             <br />
             <br />
             <br />
-            <h3 align="center"> shop</h3><br />
+            <h3 align="center"> shops</h3><br />
             <br /><br />
-<?php
-$query = "SELECT * FROM tbl_product ORDER BY id ASC";
-$result = mysqli_query($connect, $query);
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
-        //contenedores de producto
-        ?>
-           
+            <h1>hola</h1>
+
+            <?php
+            $query = "SELECT * FROM tbl_product ORDER BY id ASC";
+            $result = mysqli_query($connect, $query);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    //contenedores de producto
+                    ?>
                     <div class="col-md-4">
                         <form method="post" action="index.php?action=add&id=<?php echo $row["id"]; ?>">
                             <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
@@ -85,10 +92,10 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         </form>
                     </div>
-        <?php
-    }
-}
-?>
+                    <?php
+                }
+            }
+            ?>
             <div style="clear:both"></div>
             <br />
             <h3>Orden de lista 
@@ -102,12 +109,12 @@ if (mysqli_num_rows($result) > 0) {
                         <th width="15%">Total</th>
                         <th width="5%">Action</th>
                     </tr>
-            <?php
-        // cariito
-            if (!empty($_SESSION["compra"])) {
-                $total = 0;
-                foreach ($_SESSION["compra"] as $keys => $values) {
-                    ?>
+                    <?php
+                    // cariito
+                    if (!empty($_SESSION["compra"])) {
+                        $total = 0;
+                        foreach ($_SESSION["compra"] as $keys => $values) {
+                            ?>
                             <tr>
                                 <td><?php echo $values["item_name"]; ?></td>
                                 <td><?php echo $values["item_quantity"]; ?></td>
@@ -115,18 +122,18 @@ if (mysqli_num_rows($result) > 0) {
                                 <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
                                 <td><a href="index.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
                             </tr>
-        <?php
-        $total = $total + ($values["item_quantity"] * $values["item_price"]);
-    }
-    ?>
+                            <?php
+                            $total = $total + ($values["item_quantity"] * $values["item_price"]);
+                        }
+                        ?>
                         <tr>
                             <td colspan="3" align="right">Total</td>
                             <td align="right">$ <?php echo number_format($total, 2); ?></td>
                             <td></td>
                         </tr>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
 
                 </table>
             </div>
