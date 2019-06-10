@@ -8,9 +8,9 @@ if (isset($_POST["añadir_al_carro"])) {
         if (!in_array($_GET["id"], $item_array_id)) {
             $count = count($_SESSION["compra"]);
             $item_array = array(
-                'id_p' => $_GET["id"],
+                'id_p' => $_GET["id"],//hola como estas
                 'item_name' => $_POST["hidden_name"],
-                'item_price' => $_POST["hidden_price"],
+                'item_price' => $_POST["hidden_price"],// <sjkdas
                 'item_quantity' => $_POST["quantity"]//hjgjgj
             );
             $_SESSION["compra"][$count] = $item_array;//hjfkhjf
@@ -23,7 +23,7 @@ if (isset($_POST["añadir_al_carro"])) {
             'item_name' => $_POST["hidden_name"],//sajkdask
             'item_price' => $_POST["hidden_price"],// holakdjak
             'item_quantity' => $_POST["quantity"]// hola
-        );
+        );// comenad
         $_SESSION["compra"][0] = $item_array;
     }
 }
